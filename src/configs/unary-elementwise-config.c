@@ -1665,9 +1665,11 @@ static void init_qs8_cvt_config(void) {
       qs8_cvt_config.init.qs8_cvt = xnn_init_qs8_cvt_neon_params;
       qs8_cvt_config.element_tile = 32;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qs8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vcvt_ukernel__armsimd32_u8;
       qs8_cvt_config.init.qs8_cvt = xnn_init_qs8_cvt_armsimd32_params;
       qs8_cvt_config.element_tile = 8;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qs8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vcvt_ukernel__neon_u32;
@@ -1787,9 +1789,11 @@ static void init_qs8_lrelu_config(void) {
       qs8_lrelu_config.init.qs8_lrelu = xnn_init_qs8_lrelu_neon_params;
       qs8_lrelu_config.element_tile = 32;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qs8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vlrelu_ukernel__armsimd32_u4;
       qs8_lrelu_config.init.qs8_lrelu = xnn_init_qs8_lrelu_armsimd32_params;
       qs8_lrelu_config.element_tile = 4;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qs8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vlrelu_ukernel__neon_u32;
@@ -1955,9 +1959,11 @@ static void init_qu8_cvt_config(void) {
       qu8_cvt_config.init.qu8_cvt = xnn_init_qu8_cvt_neon_params;
       qu8_cvt_config.element_tile = 32;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qu8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vcvt_ukernel__armsimd32_u8;
       qu8_cvt_config.init.qu8_cvt = xnn_init_qu8_cvt_armsimd32_params;
       qu8_cvt_config.element_tile = 8;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qu8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vcvt_ukernel__neon_u32;
@@ -2029,9 +2035,11 @@ static void init_qu8_lrelu_config(void) {
       qu8_lrelu_config.init.qu8_lrelu = xnn_init_qu8_lrelu_neon_params;
       qu8_lrelu_config.element_tile = 32;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qu8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vlrelu_ukernel__armsimd32_u4;
       qu8_lrelu_config.init.qu8_lrelu = xnn_init_qu8_lrelu_armsimd32_params;
       qu8_lrelu_config.element_tile = 4;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qu8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vlrelu_ukernel__neon_u32;
