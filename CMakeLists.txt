@@ -92,6 +92,7 @@ OPTION(XNNPACK_ENABLE_ARM_FP16_VECTOR "Build XNNPACK with ARM FP16 (FP16 data pr
 OPTION(XNNPACK_ENABLE_ARM_BF16 "Build XNNPACK with ARM BF16 (BFLOAT16) micro-kernels" ON)
 OPTION(XNNPACK_ENABLE_ARM_DOTPROD "Build XNNPACK with ARM DotProd (integer dot product) micro-kernels" ON)
 OPTION(XNNPACK_ENABLE_ARM_I8MM "Build XNNPACK with ARM I8MM (8-bit integer matrix multiply accumulate) micro-kernels" ON)
+OPTION(XNNPACK_ENABLE_ARM_SIMD32 "Build XNNPACK with ARM SIMD32 (ARMv6 style simd - 4 bytes. Provides optimization on CPUs without NEON) micro-kernels" OFF)
 OPTION(XNNPACK_ENABLE_RISCV_VECTOR "Build XNNPACK with RISC-V Vector micro-kernels" ON)
 OPTION(XNNPACK_ENABLE_VSX "Build XNNPACK with VSX Vector micro-kernels for Power" ON)
 SET(XNNPACK_AVXVNNI_DEFAULT ON CACHE INTERNAL "Default value to enable AVX-VNNI in x86 builds.")
