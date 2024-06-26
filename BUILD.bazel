@@ -2915,7 +2915,7 @@ xnnpack_aggregate_library(
         ":arm_i8mm_enabled": [":neoni8mm_prod_microkernels"],
         "//conditions:default": [],
     }) + select({
-        ":arm_i8mm_enabled": [":armsimd32_prod_microkernels"],
+        ":arm_simd32_enabled": [":armsimd32_prod_microkernels"],
         "//conditions:default": [],
     }) + select({
         ":riscv_vector_enabled": [":rvv_prod_microkernels"],
@@ -3829,6 +3829,16 @@ config_setting(
     define_values = {"xnn_enable_arm_i8mm": "false"},
 )
 
+config_setting(
+    name = "xnn_enable_arm_simd32_explicit_true",
+    define_values = {"xnn_enable_arm_simd32": "true"},
+)
+
+config_setting(
+    name = "xnn_enable_arm_simd32_explicit_false",
+    define_values = {"xnn_enable_arm_simd32": "false"},
+)
+
 # Enables usage of Intel AVX512-VNNI-GFNI (integer dot product with gfni) kernels.
 config_setting(
     name = "xnn_enable_avx512vnnigfni_explicit_true",
@@ -4105,6 +4115,22 @@ alias(
         ":xnn_enable_arm_dotprod_explicit_true": ":xnn_enable_arm_dotprod_explicit_true",
         ":xnn_enable_arm_dotprod_explicit_false": ":xnn_enable_arm_dotprod_explicit_true",
         "//conditions:default": ":arm_dotprod_enabled_by_default",
+    }),
+)
+
+selects.config_setting_group(
+    name = "arm_simd32_enabled_by_default",
+    match_any = [
+        "//build_config:aarch32",
+    ],
+)
+
+alias(
+    name = "arm_simd32_enabled",
+    actual = select({
+        ":xnn_enable_arm_simd32_explicit_true": ":xnn_enable_arm_simd32_explicit_true",
+        ":xnn_enable_arm_simd32_explicit_false": ":xnn_enable_arm_simd32_explicit_true",
+        "//conditions:default": ":arm_simd32_enabled_by_default",
     }),
 )
 
