@@ -62,7 +62,7 @@
     #define XNN_ARCH_WASM 0
     #define XNN_ARCH_WASMSIMD 0
     #define XNN_ARCH_WASMRELAXEDSIMD 1
-  #elif defined(__wasm_simd128__)
+  #elif XNN_ENABLE_WASMSIMD == 1
     #define XNN_ARCH_WASM 0
     #define XNN_ARCH_WASMSIMD 1
     #define XNN_ARCH_WASMRELAXEDSIMD 0
