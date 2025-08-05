@@ -1473,8 +1473,10 @@ static void init_qs8_cvt_config(void) {
       qs8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vcvt_ukernel__neon_u32;
       qs8_cvt_config.init = (xnn_init_unary_uparams_fn) xnn_init_qs8_cvt_scalar_params;
     } else {
+      #if XNN_ENABLE_ARM_SIMD32
       qs8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vcvt_ukernel__armsimd32_u8;
       qs8_cvt_config.init = (xnn_init_unary_uparams_fn) xnn_init_qs8_cvt_scalar_params;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qs8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vcvt_ukernel__neon_u32;
@@ -1533,8 +1535,10 @@ static void init_qs8_lrelu_config(void) {
       qs8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vlrelu_ukernel__neon_u32;
       qs8_lrelu_config.init = (xnn_init_unary_uparams_fn) xnn_init_qs8_lrelu_scalar_params;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qs8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vlrelu_ukernel__armsimd32_u4;
       qs8_lrelu_config.init = (xnn_init_unary_uparams_fn) xnn_init_qs8_lrelu_scalar_params;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qs8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qs8_vlrelu_ukernel__neon_u32;
@@ -1676,8 +1680,10 @@ static void init_qu8_cvt_config(void) {
       qu8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vcvt_ukernel__neon_u32;
       qu8_cvt_config.init = (xnn_init_unary_uparams_fn) xnn_init_qu8_cvt_scalar_params;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qu8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vcvt_ukernel__armsimd32_u8;
       qu8_cvt_config.init = (xnn_init_unary_uparams_fn) xnn_init_qu8_cvt_scalar_params;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qu8_cvt_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vcvt_ukernel__neon_u32;
@@ -1736,8 +1742,10 @@ static void init_qu8_lrelu_config(void) {
       qu8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vlrelu_ukernel__neon_u32;
       qu8_lrelu_config.init = (xnn_init_unary_uparams_fn) xnn_init_qu8_lrelu_scalar_params;
     } else if (!XNN_PLATFORM_MOBILE) {
+      #if XNN_ENABLE_ARM_SIMD32
       qu8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vlrelu_ukernel__armsimd32_u4;
       qu8_lrelu_config.init = (xnn_init_unary_uparams_fn) xnn_init_qu8_lrelu_scalar_params;
+      #endif
     }
   #elif XNN_ARCH_ARM64
     qu8_lrelu_config.ukernel = (xnn_vunary_ukernel_fn) xnn_qu8_vlrelu_ukernel__neon_u32;
